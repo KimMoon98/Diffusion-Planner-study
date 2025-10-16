@@ -16,7 +16,7 @@ def train_epoch(data_loader, model, optimizer, args, ema, aug: StatePerturbation
     if args.ddp:
         torch.cuda.synchronize()
 
-    with tqdm(data_loader, desc="Training", unit="batch") as data_epoch:
+    with tqdm(data_loader, desc="Training", unit="batch", colour="red", ncols=160) as data_epoch:
         for batch in data_epoch:
             '''
             data structure in batch: Tuple(Tensor) 

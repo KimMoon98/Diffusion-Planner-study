@@ -66,7 +66,7 @@ def get_args():
     
     # Training
     parser.add_argument('--seed', type=int, help='fix random seed', default=3407)
-    parser.add_argument('--train_epochs', type=int, help='epochs of training', default=500)
+    parser.add_argument('--train_epochs', type=int, help='epochs of training', default=100)
     parser.add_argument('--save_utd', type=int, help='save frequency', default=20)
     parser.add_argument('--batch_size', type=int, help='batch size (default: 2048)', default=2048)
     parser.add_argument('--learning_rate', type=float, help='learning rate (default: 5e-4)', default=5e-4)
@@ -196,8 +196,6 @@ def model_training(args):
         if global_rank == 0:
             print(f"Epoch {epoch+1}/{train_epochs}")
         train_loss, train_total_loss = train_epoch(train_loader, diffusion_planner, optimizer, args, model_ema, aug)
-        
-
 
         if global_rank == 0:
             lr_dict = {'lr': optimizer.param_groups[0]['lr']}

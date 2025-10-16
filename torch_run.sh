@@ -10,7 +10,14 @@ TRAIN_SET_PATH="/home/fanhang/planning/Diffusion-Planner-study/dataset/processed
 TRAIN_SET_LIST_PATH="/home/fanhang/planning/Diffusion-Planner-study/diffusion_planner_training.json"
 ###################################
 
-sudo -E $RUN_PYTHON_PATH -m torch.distributed.run --nnodes 1 --nproc-per-node 1 --standalone train_predictor.py \
---train_set  $TRAIN_SET_PATH \
---train_set_list  $TRAIN_SET_LIST_PATH \
+# sudo -E $RUN_PYTHON_PATH -m torch.distributed.run --nnodes 1 --nproc-per-node 1 --standalone train_predictor.py \
+# --train_set  $TRAIN_SET_PATH \
+# --train_set_list  $TRAIN_SET_LIST_PATH \
 
+sudo -E $RUN_PYTHON_PATH train_predictor.py \
+--name first_normal_train \
+--train_set $TRAIN_SET_PATH \
+--train_set_list $TRAIN_SET_LIST_PATH \
+--batch_size 64 \
+--ddp false \
+--train_epochs 10
